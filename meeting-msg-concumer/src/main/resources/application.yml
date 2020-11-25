@@ -4,15 +4,22 @@ server:
 spring:
   application:
     name: meeting-msg-consumer
-  datasource:
-    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
-    username: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+#    username: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
   kafka:
+    bootstrap-servers: 127.0.0.1:9092
     consumer:
-      group-id: meetingGroup
       auto-offset-reset: earliest
       enable-auto-commit: true
-      auto-commit-interval: 100
+#      auto-commit-interval: 100
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 10000
+    jedis:
+      pool:
+        max-active: 8

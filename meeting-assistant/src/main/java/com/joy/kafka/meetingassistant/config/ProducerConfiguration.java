@@ -1,5 +1,6 @@
 package com.joy.kafka.meetingassistant.config;
 
+import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -21,5 +22,11 @@ public class ProducerConfiguration {
         DefaultKafkaProducerFactory<String, Object> kafkaProducerFactory = new DefaultKafkaProducerFactory<>(configs);
 
         return new KafkaTemplate<>(kafkaProducerFactory);
+    }
+
+    @Bean
+    public NewTopic initialTopic() {
+        //初始化topic并设置分区
+        return new NewTopic("meeting_test",4, (short) 1 );
     }
 }
