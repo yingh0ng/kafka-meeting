@@ -44,13 +44,13 @@ public class MeetingController {
         kafkaTemplate.send(TOPIC_ADD, part, title, JSON.toJSONString(meeting));
 
         //发送同步消息
-//        SendResult<String, Object> sendResult = kafkaTemplate.send(TOPIC_ADD, part, title, meeting.toString()).get();
-//        logger.info(sendResult.toString());
+//        SendResult<String, > sendResult = kafkaTemplate.send(TOPIC_ADD, part, title, meeting.toString()).get();
+//        logger.info(sendResulObjectt.toString());
 
         //测试幂等性
-        for (int i = 0; i < 5; i++) {
-            kafkaTemplate.send(TOPIC_ADD, part, title, JSON.toJSONString(meeting));
-        }
+//        for (int i = 0; i < 5; i++) {
+//            kafkaTemplate.send(TOPIC_ADD, part, title, JSON.toJSONString(meeting));
+//        }
 
         logger.info("Add meeting: {}", meeting);
         return "Add meeting success!";
